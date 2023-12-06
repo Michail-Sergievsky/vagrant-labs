@@ -1,0 +1,7 @@
+[hosts.yml]
+centos7lab1 ansible_host=192.168.56.10
+centos7lab2 ansible_host=192.168.56.11
+centos8lab1 ansible_host=192.168.56.12
+centos8lab2 ansible_host=192.168.56.13
+ubuntu20lab1 ansible_host=192.168.56.14
+ubuntu20lab2 ansible_host=192.168.56.15
