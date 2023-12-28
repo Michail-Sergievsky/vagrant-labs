@@ -45,6 +45,7 @@ local_disks = [
         su $USER -c "cp -f /tmp/.bashrc /home/$USER/"
         su $USER -c "cp -f /tmp/.bash_profile /home/$USER/"
         
+        usermod --password $(openssl passwd rootpass) root
         # SSH configuration.
         sed -i '/^PasswordAuthentication/s/no/yes/' /etc/ssh/sshd_config
         systemctl restart sshd
@@ -135,8 +136,27 @@ Vagrant.configure("2") do |config|
 
       # Centos8 repos
       if (host['os'] == "centos8") then
-      machine.vm.provision "shell", inline: "sed -i -e 's|mirrorlist=|#mirrorlist=|g' /etc/yum.repos.d/CentOS-*"
-      machine.vm.provision "shell", inline: "sed -i -e 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*"
+        machine.vm.provision "shell", inline: "sed -i -e 's|mirrorlist=|#mirrorlist=|g' /etc/yum.repos.d/CentOS-*"
+        machine.vm.provision "shell", inline: "sed -i -e 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*"
+      else
+      end
+      # Centos_intall_vim
+      # HOW to make OR in YMAL????
+      # if [[ (host['os'] == "centos7") || (host['os'] == "centos8") ]]then
+      #   machine.vm.provision "shell", inline: "yum install vim -y"
+      # else
+      # end
+      if (host['os'] == "centos7") then
+        machine.vm.provision "shell", inline: "yum install vim -y"
+      else
+      end
+      if (host['os'] == "centos8") then
+        machine.vm.provision "shell", inline: "yum install vim -y"
+      else
+      end
+      # Ubuntu update
+      if (host['os'] == "ubuntu2004") then
+        machine.vm.provision "shell", inline: "apt update"
       else
       end
     end
