@@ -21,9 +21,10 @@ Fixed Centos 8 repo
 
 TO DO
 
+Add tmux install
 Centos 8 after "dnf update" + vagrant halt,reboot - can't login with vagrant, student
 
-## Команды vagrant используемые при работе с виртуальными машинами
+## vagrant commands
 ```
 vagrant up [VM_NAME] - развернуть виртуальную машину
 vagrant halt [VM_NAME] - выключить виртуальную машину
